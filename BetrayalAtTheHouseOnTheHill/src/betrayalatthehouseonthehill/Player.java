@@ -19,8 +19,8 @@ public class Player extends GameObject {
     
     private int[] strengthStats;
     private int strength;
-    private int[] speedStats;
-    private int speed;
+    int[] speedStats;
+    int speed;
     private int[] sanityStats;
     private int sanity;
     private int[] knowledgeStats;

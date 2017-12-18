@@ -20,6 +20,7 @@ public class Controller {
     private List<Tile> unusedTiles;
     private int hauntCounter;
     private Haunt haunt;
+    TurnDetails currentTurn;
     
     public Player getPlayer(int i) {
         return this.activePlayers.get(i);
@@ -42,19 +43,35 @@ public class Controller {
         this.turn = 0;
     }
     
-    void beginNextTurn() {
+    List<PlayerAction> beginNextTurn() {
         Player currentPlayer = activePlayers.get(turn);
+        this.currentTurn = new TurnDetails();
+        this.currentTurn.hasDrawn = false;
+        this.currentTurn.numMoves = currentPlayer.speedStats[currentPlayer.speed];
+        this.currentTurn.currentPlayer = currentPlayer;
+        
         if (haunt != null) {
             haunt.beginNextTurn(currentPlayer);
         }
         // yield control to game interface
+        List<PlayerAction> possibleActions = new ArrayList<>();
+        return possibleActions;
+    }
+    
+    void performAction(PlayerAction action) {
+        action.performAction();
+    }
+    
+    List<PlayerAction> continueCurrentTurn() {
+        // 
+        List<PlayerAction> possibleActions = new ArrayList<>();
+        return possibleActions;
     }
     
     void endCurrentTurn() {
         // regain control from game interface
-        Player currentPlayer = activePlayers.get(turn);
         if (haunt != null) {
-            haunt.endCurrentTurn(currentPlayer);
+            haunt.endCurrentTurn(this.currentTurn.currentPlayer);
         }
         turn++;
         turn %= this.activePlayers.size();

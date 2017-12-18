@@ -9,13 +9,14 @@ package betrayalatthehouseonthehill;
  *
  * @author Kevin
  */
-public abstract class Edge extends GameObject {
-    Tile source, destination;
-    private boolean oneWay;
-    EdgeType edgeType;
-
-    public Edge(Controller gameController) {
+public abstract class PlayerAction extends GameObject {
+    
+    protected String name;
+    protected String description;
+    
+    
+    public PlayerAction(Controller gameController) {
         super(gameController);
     }
-    abstract void onAttemptPass(boolean direction);
+    abstract void performAction();
 }

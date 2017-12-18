@@ -10,14 +10,16 @@ import java.util.*;
  * @author Kevin
  */
 public class Tile extends GameObject {
-    private String name;
-    private boolean[] possibleFloors;
-    private int currentFloor;
-    private Edge north, south, east, west;
-    private List<Edge> allEdges;
+    String name;
+    boolean[] possibleFloors;
+    int currentFloor;
+    boolean[] doors;
+    Direction orientation;
+    Edge north, east, south, west;
+    List<Edge> allEdges;
 
     public Tile(Controller gameController) {
         super(gameController);
     }
-    
+     
 }
